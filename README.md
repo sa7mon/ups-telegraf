@@ -20,7 +20,7 @@ ups battery.charge=100,battery.charge.low=10,battery.charge.warning=20,battery.m
 
 ## Usage
 
-Edit the script `cmd` variable to reflect your setup. Specifically, change 'ups' to whatever you named your UPS in `NUT` or `upsd`.
+Edit the script `cmd` variable to reflect your setup. Specifically, change 'ups' to whatever you named your UPS in `NUT` or `upsd`.  ALSO, add the measurement names that contain string values to the string_measurements array (in sorted order!) so they will be properly quoted for influxdb.
 
 Call the script from `telegraf.conf` like this
 ```
