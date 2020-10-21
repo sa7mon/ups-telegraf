@@ -41,6 +41,7 @@ Call the script from `telegraf.conf` like this
 Tested on:
 * Cyberpower CP1000AVRLCDa
 * MGE Pulsar 2200
+* CyberPower SL700U (`CyberPowerSL700U.py`)
 
 If you're using this with a different UPS, please let me know so I can add it to the list
 
