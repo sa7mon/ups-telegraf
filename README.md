@@ -13,7 +13,7 @@ battery.type: PbAcid
 battery.voltage: 13.1
 battery.voltage.nominal: 12
 ```
-..into InfluxDB Line Protocol like this: 
+into InfluxDB Line Protocol like this: 
 ```
 ups battery.charge=100,battery.charge.low=10,battery.charge.warning=20,battery.mfr.date="CPS",battery.runtime=2970,battery.runtime.low=300,battery.type="PbAcid",battery.voltage=13.1,battery.voltage.nominal=12
 ```
