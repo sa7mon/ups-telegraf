@@ -9,11 +9,8 @@ if (len(sys.argv) == 2):
 
     output=""
 
-    string_measurements=["battery.mfr.date", "battery.type", "device.mfr", "device.model","device.serial","device.type",
-            "driver.name", "driver.paramter.port", "driver.parameter.synchronous", "driver.version", "driver.version.data",
-            "ups.beeper.status", "ups.mfr","ups.model", "ups.serial", "ups.status", "ups.test.result", "driver.parameter.port",
-            "driver.parameter.syncronous"]
-            
+    string_measurements=["battery.charge", "battery.charge.low", "battery.current", "battery.runtime", "battery.runtime.low", "battery.temperature", "battery.voltage", "device.mfr"$
+
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 
     for line in p.stdout.readlines(): #read and store result in log file
