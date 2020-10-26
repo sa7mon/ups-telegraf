@@ -19,7 +19,7 @@ if (len(sys.argv) == 2):
         value = line[line.find(":")+2:]
 
         if key in string_measurements:
-            if value.isalpha():
+            if not value.isnumeric():
                 value = '"' + value + '"'
             measurement = key + "=" + value
             if output != "":
