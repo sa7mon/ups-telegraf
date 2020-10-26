@@ -9,7 +9,7 @@ if (len(sys.argv) == 2):
 
     output=""
 
-    string_measurements=["battery.charge", "battery.charge.low", "battery.current", "battery.runtime", "battery.runtime.low", "battery.temperature", "battery.voltage", "device.mfr"$
+    string_measurements=["battery.charge", "battery.charge.low", "battery.current", "battery.runtime", "battery.runtime.low", "battery.temperature", "battery.voltage", "device.mfr", "device.model", "device.type", "driver.name", "driver.parameter.pollfreq", "driver.parameter.pollinterval", "driver.parameter.port", "driver.parameter.snmp_version", "driver.parameter.synchronous", "driver.version", "driver.version.data", "driver.version.internal", "input.bypass.phases", "input.current", "input.frequency", "input.frequency.nominal", "input.phases", "input.realpower", "input.transfer.high", "input.transfer.low", "input.voltage", "input.voltage.nominal", "output.current", "output.frequency", "output.frequency.nominal", "output.phases", "output.power.nominal", "output.realpower", "output.realpower.nominal", "output.voltage", "output.voltage.nominal", "ups.beeper.status", "ups.firmware", "ups.firmware.aux", "ups.load", "ups.mfr", "ups.model", "ups.status", "ups.test.result", "ups.timer.shutdown", "ups.timer.start"]
 
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 
@@ -19,11 +19,14 @@ if (len(sys.argv) == 2):
         value = line[line.find(":")+2:]
 
         if key in string_measurements:
-            value = '"' + value + '"'
-        measurement = key + "=" + value
-        if output != "":
-            measurement = "," + measurement
-        output += measurement
+            if value.isalpha():
+                value = '"' + value + '"'
+            measurement = key + "=" + value
+            if output != "":
+                measurement = "," + measurement
+            output += measurement
 
     output = "ups " + output.rstrip()
     print(output, end='')
+
+    
