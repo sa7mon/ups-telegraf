@@ -20,7 +20,7 @@ ups battery.charge=100,battery.charge.low=10,battery.charge.warning=20,battery.m
 
 ## Usage
 
-Edit the script `cmd` variable to reflect your setup. Specifically, change 'ups' to whatever you named your UPS in `NUT` or `upsd`. Add any additional measurement names that your UPS provides to the `string_measurements` array (in sorted order) so they will be included in the output.
+Edit the script `string_measurements` variable to reflect your setup. Specifically, add any additional measurement names that your UPS provides to the `string_measurements` array (in sorted order) so they will be included in the output.
 
 To see all the measurements your UPS provides, run this:
 
@@ -32,7 +32,7 @@ Call the script from `telegraf.conf` like this
 ```
 [[inputs.exec]]
 
-   commands = ["python /path/to/getUpsData.py"]
+   commands = ["python /path/to/getUpsData.py <YOUR_UPS_NAME_HERE>"]
    timeout = "5s"
    data_format = "influx"
 ```
@@ -40,8 +40,10 @@ Call the script from `telegraf.conf` like this
 ## Compatibility
 Tested on:
 * Cyberpower CP1000AVRLCDa
-* MGE Pulsar 2200
 * CyberPower SL700U (`CyberPowerSL700U.py`)
+* Dell UPS 1000T/1920T/1920R HV (`DellBadge-Eaton5PX.py`)
+* MGE Pulsar 2200
+
 
 If you're using this with a different UPS, please let me know so I can add it to the list
 
@@ -51,3 +53,4 @@ Thanks to the following for helping improve this repo.
 
 * @openincident
 * @mattster98
+* @Graffics
