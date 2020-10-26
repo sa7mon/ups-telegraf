@@ -28,5 +28,3 @@ if (len(sys.argv) == 2):
 
     output = "ups " + output.rstrip()
     print(output, end='')
-
-    
