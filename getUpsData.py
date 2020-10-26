@@ -13,7 +13,7 @@ if (len(sys.argv) == 2):
             "driver.name", "driver.paramter.port", "driver.parameter.synchronous", "driver.version", "driver.version.data",
             "ups.beeper.status", "ups.mfr","ups.model", "ups.serial", "ups.status", "ups.test.result", "driver.parameter.port",
             "driver.parameter.syncronous"]
-            
+
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
 
     for line in p.stdout.readlines(): #read and store result in log file
@@ -22,11 +22,12 @@ if (len(sys.argv) == 2):
         value = line[line.find(":")+2:]
 
         if key in string_measurements:
-            value = '"' + value + '"'
-        measurement = key + "=" + value
-        if output != "":
-            measurement = "," + measurement
-        output += measurement
+            if value.isalpha():
+                value = '"' + value + '"'
+            measurement = key + "=" + value
+            if output != "":
+                measurement = "," + measurement
+            output += measurement
 
     output = "ups " + output.rstrip()
     print(output, end='')
