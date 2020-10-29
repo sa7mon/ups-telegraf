@@ -19,7 +19,7 @@ if (len(sys.argv) == 2):
         value = line[line.find(":")+2:]
 
         if key in string_measurements:
-            if not value.isnumeric():
+            if not re.match(r'^(-?)(\d+|\d+\.\d+)$',value):
                 value = '"' + value + '"'
             measurement = key + "=" + value
             if output != "":
