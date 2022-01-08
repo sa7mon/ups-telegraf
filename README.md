@@ -20,29 +20,41 @@ ups battery.charge=100,battery.charge.low=10,battery.charge.warning=20,battery.m
 
 ## Usage
 
-Edit the script `string_measurements` variable to reflect your setup. Specifically, add any additional measurement names that your UPS provides to the `string_measurements` array (in sorted order) so they will be included in the output.
-
-To see all the measurements your UPS provides, run this:
-
+clone the repo via 
 ```
-upsc YOUR_UPS_NAME_HERE 2>/dev/null | awk -F':' 'BEGIN {print "string_measurements=["} {print "\"" $1 "\", "} END {print "]"}' |tr -d '\n'
+git clone https://github.com/sa7mon/ups-telegraf.git
 ```
+install dependency
+```
+pip install -r requirements.txt
+```
+
+see all UPS existant in the config directory 
 
 Call the script from `telegraf.conf` like this
 ```
 [[inputs.exec]]
 
-   commands = ["python /path/to/getUpsData.py <YOUR_UPS_NAME_HERE>"]
+   commands = ["python /full/path/to/getUpsData.py --config eaton/eco --name MyUPS"]
    timeout = "5s"
    data_format = "influx"
 ```
 
+if your UPS does not appear in the configuration directory, you can simply create by saving the result in the correct folder :
+```
+upsc THE_UPS 2>/dev/null | awk -F ":" '{ $2 = "" ; print $0 }'
+```
+
+
+if you want you can search in the Grafana_dashboard folder if some dash already exist
+
 ## Compatibility
 Tested on:
 * Cyberpower CP1000AVRLCDa
-* CyberPower SL700U (`CyberPowerSL700U.py`)
-* Dell UPS 1000T/1920T/1920R HV (`DellBadge-Eaton5PX.py`)
-* MGE Pulsar 2200
+* CyberPower SL700U (`CyberPower/SL700U`)
+* Dell UPS 1000T/1920T/1920R HV (`Dell/5PX`)
+* MGE Pulsar 2200 (`Eaton/Pulsar`)
+* Eaton eco 1600 (`Eaton/Eco`)
 
 
 If you're using this with a different UPS, please let me know so I can add it to the list
@@ -54,3 +66,4 @@ Thanks to the following for helping improve this repo.
 * @openincident
 * @mattster98
 * @Graffics
+* @Depfryer
