@@ -20,6 +20,15 @@ ups battery.charge=100,battery.charge.low=10,battery.charge.warning=20,battery.m
 
 ## Usage
 
+clone the repo via 
+```
+git clone https://github.com/sa7mon/ups-telegraf.git
+```
+install dependency
+```
+pip install -r requirements.txt
+```
+
 see all UPS existant in the config directory 
 
 Call the script from `telegraf.conf` like this
@@ -37,10 +46,7 @@ upsc THE_UPS 2>/dev/null | awk -F ":" '{ $2 = "" ; print $0 }'
 ```
 
 
-
-
-
-
+if you want you can search in the Grafana_dashboard folder if some dash already exist
 
 ## Compatibility
 Tested on:
